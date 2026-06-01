@@ -11,13 +11,13 @@
 ### O que está feito
 
 - Estrutura inicial da aplicação criada, ambiente configurado e projeto rodando localmente (Next.js no front, FastAPI + Postgres no back via Docker Compose).
-- API básica funcionando, incluindo endpoint de health check, com organização inicial de rotas e arquitetura.
+- API básica funcionando, com health check em `GET /health` e organização inicial de rotas e arquitetura.
 - Páginas `/projeto` e `/hipotese` no front renderizando o enquadramento documental do produto.
 - Documentação (`docs/enquadramento.md`), backlog (`TASKS.md`) e template de PR (`.github/pull_request_template.md`) configurados para orientar próximas etapas.
 
 ### O que está em andamento
 
-- **TASK-001 — Página de Decisões Técnicas (`/decisoes`)**: estrutura de dados definida e scaffold inicial gerado com Claude Code. Falta listagem com filtros, integração com FastAPI e testes.
+- **TASK-001 — Página de Decisões Técnicas (`/decisoes`)**: scaffold materializado em `src/app/decisoes/page.tsx`, com tipo `Decisao` em `src/types/decisao.ts` e mocks em `src/data/decisoes-mock.ts`. Prompt usado está versionado em `docs/prompts/decisoes-scaffold.md`. Pendente: ajuste de contraste em dark mode, filtros por status, integração com FastAPI e testes.
 
 ### Maior risco / hipótese central
 
@@ -37,7 +37,7 @@ A principal incerteza do projeto **não é técnica, é de validação de produt
 ### Produto — Definição do evento principal de validação
 
 - **Pergunta:** Qual é o evento que melhor indica que a hipótese central está sendo validada?
-- **Inclinação atual:** A realização de **consultas naturais ao sistema**, por ser a expressão direta da proposta de valor (painel consultável por linguagem natural).
+- **Inclinação atual:** A realização de **consultas naturais ao sistema** — entendida concretamente como **uma interface de chat livre dentro do painel**, onde o usuário faz perguntas em linguagem natural sem depender de filtros estruturados.
 - **Por que ainda não bati o martelo:** Preciso observar nos primeiros testes quais comportamentos efetivamente representam valor — consulta isolada pode ser curiosidade, consulta repetida no mesmo projeto provavelmente é uso real. A definição precisa diferenciar "uso experimental" de "uso recorrente".
 - **Impacto no bloqueio:** Trava a TASK-002 (Instrumentação da métrica) — sem evento definido, não há o que instrumentar.
 

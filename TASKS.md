@@ -16,7 +16,8 @@
 Subtasks:
 
 - [x] Definir estrutura de dados da decisão (id, título, status, contexto, data)
-- [x] Gerar scaffold inicial da página `/decisoes` com Claude Code
+- [x] Gerar scaffold inicial da página `/decisoes` com Claude Code (prompt versionado em `docs/prompts/decisoes-scaffold.md`)
+- [ ] Ajustar contraste de textos secundários em dark mode (`text-gray-600/700` → tons claros adequados)
 - [ ] Componente de listagem com filtros por status
 - [ ] Integração com backend FastAPI (endpoint `GET /decisoes`)
 - [ ] Testes de renderização da listagem
