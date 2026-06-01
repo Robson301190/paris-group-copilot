@@ -55,3 +55,39 @@ Três arquivos criados, todos dentro dos limites do prompt:
 
 - Cor das badges segue o critério literal do prompt (amarelo/verde/azul). Se a paleta do design system evoluir, esse mapa é o ponto único de mudança.
 - A página não tem ainda nenhum link de navegação entrando ou saindo. Adicionar entrada no menu/landing fica como subtask futura, fora do escopo deste scaffold.
+
+---
+
+## Revisão do autor — Aceito / Ajustado / Rejeitado
+
+Decisões tomadas pelo Claude Code que não estavam **literalmente** no prompt e como o autor revisou cada uma:
+
+### ✅ Aceito sem modificação
+
+- **Mocks com conteúdo real, refletindo decisões do projeto** (ORM pendente, evento de validação pendente, stack já decidida).
+  Justificativa: dá continuidade narrativa — abrir `/decisoes` mostra o estado real, não dummy data. Acelera o feedback visual e prepara o terreno para o backend.
+- **Mapas `STATUS_BADGE` e `STATUS_LABEL` como `Record<StatusDecisao, string>` fora do componente.**
+  Justificativa: centralização da regra de cor/rótulo. Quando entrar um quarto status (ex: "revogada"), muda em um lugar só. Tradeoff de complexidade aceitável para 3 itens.
+- **Layout minimalista (`max-w-3xl`, `space-y-4`, padding com Tailwind).**
+  Justificativa: alinha com o estilo enxuto das páginas `/projeto` e `/hipotese` já existentes no repo. Coerência visual sem trabalho extra.
+- **`data` mantido como `string` ISO, sem conversão para `Date`.**
+  Justificativa: literal ao prompt. Formatação amigável vira requisito separado quando o produto precisar.
+
+### ⚠️ Ajustado após render visual
+
+- **Contraste dos textos secundários em dark mode.**
+  No render real, `text-gray-600/700` ficou com legibilidade reduzida sobre fundo escuro do sistema. Não bloqueia aceite do scaffold, mas vira nova subtask na TASK-001 do `TASKS.md` para iteração próxima (mover para tons claros como `text-gray-300/400` quando dark mode for tratado oficialmente).
+
+### ❌ Rejeitado (nada por enquanto)
+
+Nenhuma decisão do Claude Code foi rejeitada nesta iteração. Critério: tudo que foi gerado respeitou os limites do prompt (sem dependências novas, sem backend, sem filtros, sem testes, sem `"use client"`).
+
+### Critérios de aceitação do prompt — verificação final
+
+| Critério | Status |
+|---|---|
+| Página compila sem erro de TypeScript | ✅ Confirmado via `npm run dev` |
+| Visualmente legível com badges diferenciadas (amarelo/verde/azul) | ✅ Confirmado via render em `http://localhost:3000/decisoes` |
+| Tipo `Decisao` importado de `types/`, mocks de `data/` | ✅ Confirmado no código |
+| Nenhum `"use client"`, apenas renderização estática | ✅ Confirmado no código |
+| Nada fora dos 3 caminhos listados foi modificado | ✅ Confirmado no `git status` |
